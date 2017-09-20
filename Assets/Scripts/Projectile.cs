@@ -21,11 +21,12 @@ public class Projectile : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D other) {
 		
-		if (other.gameObject.tag == "Player") 
+		if (other.gameObject.tag == "Player1" || other.gameObject.tag == "Player2") 
 			//acertou algum jogador, a bala nao ricocheteia
 			qntHitsLeft = 0;
 		else 
-			//caso contrario, apenas diminui a quantidade hits restantes
+			//parede ou algum obstaculo
+			//apenas diminui a quantidade hits restantes para ricocheterar
 			qntHitsLeft--;
 		
 		if (qntHitsLeft == 0) 

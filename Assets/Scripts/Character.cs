@@ -7,8 +7,9 @@ public class Character : MonoBehaviour {
 	public GameObject bulletEmitter;
 	public GameObject bullet;
 
-	float movSpeed = 2.0f;
-	float rotationLocation = 5.0f, rotationSpeed = 2.5f;
+	public float movSpeed;
+	public float rotationLocation;
+	public float rotationSpeed;
 
 	void Start () {
 		
@@ -16,8 +17,25 @@ public class Character : MonoBehaviour {
 
 	void Update () {
 
-		float xAxis = Input.GetAxis ("HorizontalP1");
-		float yAxis = Input.GetAxis ("VerticalP1");
+		float xAxis, yAxis;
+
+
+		if (gameObject.tag == "Player1") {
+		
+			xAxis = Input.GetAxis ("HorizontalP1");
+			yAxis = Input.GetAxis ("VerticalP1");
+
+			if (Input.GetButtonDown ("FireP1"))
+				Fire ();
+
+		} else {
+		
+			xAxis = Input.GetAxis ("HorizontalP2");
+			yAxis = Input.GetAxis ("VerticalP2");
+
+			if (Input.GetButtonDown ("FireP2"))
+				Fire ();
+		}
 
 		rotationLocation += (xAxis * rotationSpeed);
 		transform.eulerAngles = new Vector3(0, 0, rotationLocation);
@@ -25,12 +43,9 @@ public class Character : MonoBehaviour {
 		var move = new Vector3 (0, yAxis, 0);
 		transform.position += move * movSpeed * Time.deltaTime;
 
-		//tiro
+	}
 
-		if (Input.GetButtonDown ("FireP1")) {
-			Instantiate(bullet,bulletEmitter.transform.position,bulletEmitter.transform.rotation);
-
-		}
-		
+	void Fire(){
+		Instantiate(bullet,bulletEmitter.transform.position,bulletEmitter.transform.rotation);
 	}
 }
