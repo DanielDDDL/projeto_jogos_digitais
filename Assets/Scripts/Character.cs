@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Character : MonoBehaviour {
 
-	float movSpeed = 2.0f, rotationSpeed = 2.5f;
-	float rotation = 5.0f;
+	float movSpeed = 2.0f;
+	float rotationLocation = 5.0f, rotationSpeed = 2.5f;
+
+	public GameObject projectilePrefab;
 
 	void Start () {
 		
@@ -16,11 +18,15 @@ public class Character : MonoBehaviour {
 		float xAxis = Input.GetAxis ("Horizontal");
 		float yAxis = Input.GetAxis ("Vertical");
 
-		rotation += (xAxis * rotationSpeed);
-		transform.eulerAngles = new Vector3(0, 0, rotation);
+		rotationLocation += (xAxis * rotationSpeed);
+		transform.eulerAngles = new Vector3(0, 0, rotationLocation);
 
 		var move = new Vector3 (0, yAxis, 0);
 		transform.position += move * movSpeed * Time.deltaTime;
 
+		if (Input.GetButtonDown ("Fire1")) {
+			Instantiate(projectilePrefab, transform.position, transform.rotation);
+		}
+		
 	}
 }
