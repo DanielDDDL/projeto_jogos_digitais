@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Character : MonoBehaviour {
 
+	public GameObject bulletEmitter;
+	public GameObject bullet;
+
 	float movSpeed = 2.0f;
 	float rotationLocation = 5.0f, rotationSpeed = 2.5f;
-
-	public GameObject projectilePrefab;
 
 	void Start () {
 		
@@ -24,8 +25,10 @@ public class Character : MonoBehaviour {
 		var move = new Vector3 (0, yAxis, 0);
 		transform.position += move * movSpeed * Time.deltaTime;
 
+		//tiro
 		if (Input.GetButtonDown ("Fire1")) {
-			Instantiate(projectilePrefab, transform.position, transform.rotation);
+			Instantiate(bullet,bulletEmitter.transform.position,bulletEmitter.transform.rotation);
+
 		}
 		
 	}

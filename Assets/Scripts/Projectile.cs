@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
 
-	float speed;
+	public float initialForce;
 
 	// Use this for initialization
 	void Start () {
-		speed = 12f;	
+		Rigidbody2D temporaryRigidBody = GetComponent<Rigidbody2D>();
+		temporaryRigidBody.AddForce(transform.right * initialForce);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(new Vector3(1, 0) * Time.deltaTime * speed);
+		
+
 	}
+
+	void OnCollisionEnter2D (Collision2D other) {
+
+		Debug.Log ("Colisão detectada!");
+
+	}
+
 }
