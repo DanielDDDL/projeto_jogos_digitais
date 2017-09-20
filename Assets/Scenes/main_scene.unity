@@ -227,7 +227,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletEmitter: {fileID: 2140219848}
   bullet: {fileID: 1696204957515896, guid: 46505e3d2c37b7843a67579f7a1cffee, type: 2}
-  force: 400
 --- !u!212 &1324653074
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour {
 
 	public float initialForce;
+	public int qntHitsLeft;
 
 	// Use this for initialization
 	void Start () {
@@ -19,8 +20,18 @@ public class Projectile : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D (Collision2D other) {
+		
+		if (other.gameObject.tag == "Player") 
+			//acertou algum jogador, a bala nao ricocheteia
+			qntHitsLeft = 0;
+		else 
+			//caso contrario, apenas diminui a quantidade hits restantes
+			qntHitsLeft--;
+		
+		if (qntHitsLeft == 0) 
+			Destroy (gameObject);
 
-		Debug.Log ("Colisão detectada!");
+
 
 	}
 
