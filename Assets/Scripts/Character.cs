@@ -16,8 +16,8 @@ public class Character : MonoBehaviour {
 
 	void Update () {
 
-		float xAxis = Input.GetAxis ("Horizontal");
-		float yAxis = Input.GetAxis ("Vertical");
+		float xAxis = Input.GetAxis ("HorizontalP1");
+		float yAxis = Input.GetAxis ("VerticalP1");
 
 		rotationLocation += (xAxis * rotationSpeed);
 		transform.eulerAngles = new Vector3(0, 0, rotationLocation);
@@ -26,7 +26,8 @@ public class Character : MonoBehaviour {
 		transform.position += move * movSpeed * Time.deltaTime;
 
 		//tiro
-		if (Input.GetButtonDown ("Fire1")) {
+
+		if (Input.GetButtonDown ("FireP1")) {
 			Instantiate(bullet,bulletEmitter.transform.position,bulletEmitter.transform.rotation);
 
 		}
