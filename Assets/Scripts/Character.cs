@@ -58,7 +58,7 @@ public class Character : MonoBehaviour {
 			if (Input.GetKeyDown(KeyCode.R)) {
 				gameController.RestartGame ();
 
-			} else if (Input.anyKey) {
+			} else if (Input.GetKeyDown(KeyCode.T)) {
 				gameController.InitialMenu ();
 
 			}

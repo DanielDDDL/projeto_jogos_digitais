@@ -51,7 +51,7 @@ public class GameController : MonoBehaviour {
 			text += "Vencedor: " + winner + ". ";
 		}
 
-		text += "Pressione 'R' para reicinar a partida ou qualquer outra tecla para voltar ao menu inicial.";
+		text += "Pressione 'R' para reiniciar a partida ou a tecla 'T' para voltar ao menu inicial.";
 		SetEndingGameText (text);
 
 	}
