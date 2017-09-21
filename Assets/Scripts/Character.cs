@@ -30,9 +30,15 @@ public class Character : MonoBehaviour {
 			dmgMult = PlayerPrefs.GetInt (player1_dmg_mult);
 			hpMult  = PlayerPrefs.GetInt (player1_hp_mult);
 
+			Debug.Log ("HP  recuperado p1: " + hpMult);
+			Debug.Log ("Dmg recuperado p1: " + dmgMult);
+
 		} else if (gameObject.tag == "Player2") {
 			dmgMult = PlayerPrefs.GetInt (player2_dmg_mult);
 			hpMult  = PlayerPrefs.GetInt (player2_hp_mult);
+
+			Debug.Log ("HP  recuperado p2: " + hpMult);
+			Debug.Log ("Dmg recuperado p2: " + dmgMult);
 
 		}
 

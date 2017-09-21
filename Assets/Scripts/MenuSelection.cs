@@ -23,6 +23,7 @@ public class MenuSelection : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		//carregando informacoes desde o comeco
 		NotifyChanges ();
 	}
 
@@ -59,7 +60,7 @@ public class MenuSelection : MonoBehaviour {
 	}
 
 	void NotifyChanges(){
-
+		
 		txtDamageP1.text = p1DamageMult + "";
 		txtHpP1.text = p1HpMult + "";
 		txtPointsP1.text = pointsP1 + "";
