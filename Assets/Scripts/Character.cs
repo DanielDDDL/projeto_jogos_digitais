@@ -6,6 +6,7 @@ public class Character : MonoBehaviour {
 
 	public GameObject bulletEmitter;
 	public GameObject bullet;
+	public GameController gameController;
 
 	public float movSpeed;
 	public float rotationLocation;
@@ -21,7 +22,7 @@ public class Character : MonoBehaviour {
 	private readonly string player2_hp_mult  = "PLAYER_2_HP_MULT";
 
 	void Start () {
-
+		
 		int dmgMult = 0;
 		int hpMult = 0;
 
@@ -51,31 +52,44 @@ public class Character : MonoBehaviour {
 	}
 
 	void Update () {
-		
-		float xAxis, yAxis;
 
-		if (gameObject.tag == "Player1") {
-		
-			xAxis = Input.GetAxis ("HorizontalP1");
-			yAxis = Input.GetAxis ("VerticalP1");
+		if (gameController.IsGameFinished ()) {
+			
+			if (Input.GetKeyDown(KeyCode.R)) {
+				gameController.RestartGame ();
 
-			if (Input.GetButtonDown ("FireP1"))
-				Fire ();
+			} else if (Input.anyKey) {
+				gameController.InitialMenu ();
+
+			}
 
 		} else {
-		
-			xAxis = Input.GetAxis ("HorizontalP2");
-			yAxis = Input.GetAxis ("VerticalP2");
+			
+			float xAxis, yAxis;
 
-			if (Input.GetButtonDown ("FireP2"))
-				Fire ();
+			if (gameObject.tag == "Player1") {
+
+				xAxis = Input.GetAxis ("HorizontalP1");
+				yAxis = Input.GetAxis ("VerticalP1");
+
+				if (Input.GetButtonDown ("FireP1"))
+					Fire ();
+				
+			} else {
+
+				xAxis = Input.GetAxis ("HorizontalP2");
+				yAxis = Input.GetAxis ("VerticalP2");
+
+				if (Input.GetButtonDown ("FireP2"))
+					Fire ();
+			}
+
+			rotationLocation += (xAxis * rotationSpeed);
+			transform.eulerAngles = new Vector3(0, 0, rotationLocation);
+
+			var move = new Vector3 (0, yAxis, 0);
+			transform.position += move * movSpeed * Time.deltaTime;
 		}
-
-		rotationLocation += (xAxis * rotationSpeed);
-		transform.eulerAngles = new Vector3(0, 0, rotationLocation);
-
-		var move = new Vector3 (0, yAxis, 0);
-		transform.position += move * movSpeed * Time.deltaTime;
 
 	}
 
@@ -95,7 +109,17 @@ public class Character : MonoBehaviour {
 
 			if(hp <= 0){
 				//fim de jogo
-				//restart, menu principal, whatever
+
+				string playerNameIsh = "";
+				if(gameObject.tag == "Player1")
+					//se quem morreu foi o player 1...
+					playerNameIsh = "Player 2";
+				else 
+					//se quem morreu foi o player 2...
+					playerNameIsh = "Player 1";
+				
+
+				gameController.FinishGame(playerNameIsh);//TODO: passar o nome do player que venceu
 				Debug.Log ("And, by the way, he died");	
 			}
 
