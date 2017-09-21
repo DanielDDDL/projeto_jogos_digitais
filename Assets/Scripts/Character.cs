@@ -24,6 +24,8 @@ public class Character : MonoBehaviour {
 	private readonly string player2_dmg_mult = "PLAYER_2_DMG_MULT";
 	private readonly string player2_hp_mult  = "PLAYER_2_HP_MULT";
 
+	public Camera cam;
+
 	void Start () {
 		
 		int dmgMult = 0;
@@ -106,6 +108,14 @@ public class Character : MonoBehaviour {
 
 	void UpdateLabelHp(){
 		lblHpPlayer.text = hp + "";
+
+		if (cam == null) {
+			Debug.Log ("Camera nula");
+		}
+
+		//seguindo o personagem
+		Vector3 screenPos = cam.WorldToScreenPoint (gameObject.transform.position);
+		lblHpPlayer.transform.position = screenPos;
 	}
 
 	void OnCollisionEnter2D (Collision2D other) {
