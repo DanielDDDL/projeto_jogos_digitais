@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialForce: 275
-  qntHitsLeft: 3
-  damage: 20
+  qntHitsLeft: 10
+  damage: 10
 --- !u!212 &212451891808210404
 SpriteRenderer:
   m_ObjectHideFlags: 1
