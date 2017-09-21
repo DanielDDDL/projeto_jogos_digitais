@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour {
 
 	public GameObject bulletEmitter;
 	public GameObject bullet;
 	public GameController gameController;
+
+	public Text lblHpPlayer;
 
 	public float movSpeed;
 	public float rotationLocation;
@@ -46,12 +49,16 @@ public class Character : MonoBehaviour {
 		damage = initialDamage + (dmgMult * dmgMultValue);
 		hp     = initialHp     + (hpMult * hpMultValue);
 
-		//setting the values on the bullet
+		//setando os valores nas balas
 		bullet.GetComponent<Projectile> ().damage = damage;
+
+		UpdateLabelHp ();
 
 	}
 
 	void Update () {
+
+		UpdateLabelHp ();
 
 		if (gameController.IsGameFinished ()) {
 			
@@ -97,6 +104,10 @@ public class Character : MonoBehaviour {
 		Instantiate(bullet,bulletEmitter.transform.position,bulletEmitter.transform.rotation);
 	}
 
+	void UpdateLabelHp(){
+		lblHpPlayer.text = hp + "";
+	}
+
 	void OnCollisionEnter2D (Collision2D other) {
 
 		if(other.gameObject.tag == "Projectile"){
@@ -108,7 +119,12 @@ public class Character : MonoBehaviour {
 			Debug.Log ("Hit! " + gameObject.tag + "'s life went down to " + hp);
 
 			if(hp <= 0){
+				
 				//fim de jogo
+
+				//por que iriamos passar disso?
+				//por que chutar cachorro morto?
+				hp = 0;
 
 				string playerNameIsh = "";
 				if(gameObject.tag == "Player1")
