@@ -178,6 +178,7 @@ MonoBehaviour:
   movSpeed: 2.5
   rotationLocation: 180
   rotationSpeed: 2.5
+  hp: 100
 --- !u!212 &624878013
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -504,6 +505,7 @@ MonoBehaviour:
   movSpeed: 2.5
   rotationLocation: 0
   rotationSpeed: 2.5
+  hp: 100
 --- !u!212 &1324653074
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114250534715033310}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialForce: 275
   qntHitsLeft: 3
+  damage: 20
 --- !u!212 &212451891808210404
 SpriteRenderer:
   m_ObjectHideFlags: 1
