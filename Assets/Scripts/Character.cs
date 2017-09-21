@@ -10,15 +10,15 @@ public class Character : MonoBehaviour {
 	public float movSpeed;
 	public float rotationLocation;
 	public float rotationSpeed;
+	public int hp;
 
 	void Start () {
 		
 	}
 
 	void Update () {
-
+		
 		float xAxis, yAxis;
-
 
 		if (gameObject.tag == "Player1") {
 		
@@ -48,4 +48,25 @@ public class Character : MonoBehaviour {
 	void Fire(){
 		Instantiate(bullet,bulletEmitter.transform.position,bulletEmitter.transform.rotation);
 	}
+
+	void OnCollisionEnter2D (Collision2D other) {
+
+		if(other.gameObject.tag == "Projectile"){
+
+			//acessando a referencia do script
+			int damageDealt = other.gameObject.GetComponent<Projectile>().damage;
+			hp -= damageDealt;
+
+			Debug.Log ("Hit! " + gameObject.tag + "'s life went down to " + hp);
+
+			if(hp <= 0){
+				//fim de jogo
+				//restart, menu principal, whatever
+				Debug.Log ("And, by the way, he died");	
+			}
+
+		}
+
+	}
+
 }

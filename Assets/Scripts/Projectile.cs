@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour {
 
 	public float initialForce;
 	public int qntHitsLeft;
+	public int damage;
 
 	// Use this for initialization
 	void Start () {
@@ -31,8 +32,6 @@ public class Projectile : MonoBehaviour {
 		
 		if (qntHitsLeft == 0) 
 			Destroy (gameObject);
-
-
 
 	}
 
