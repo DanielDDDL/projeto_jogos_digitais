@@ -10,10 +10,38 @@ public class Character : MonoBehaviour {
 	public float movSpeed;
 	public float rotationLocation;
 	public float rotationSpeed;
-	public int hp;
+
+	public int initialHp, initialDamage;
+	public int hpMultValue, dmgMultValue;
+	private int hp, damage;
+
+	private readonly string player1_dmg_mult = "PLAYER_1_DMG_MULT";
+	private readonly string player1_hp_mult  = "PLAYER_1_HP_MULT";
+	private readonly string player2_dmg_mult = "PLAYER_2_DMG_MULT";
+	private readonly string player2_hp_mult  = "PLAYER_2_HP_MULT";
 
 	void Start () {
-		
+
+		int dmgMult = 0;
+		int hpMult = 0;
+
+		//carregando configuracoes
+		if (gameObject.tag == "Player1") {
+			dmgMult = PlayerPrefs.GetInt (player1_dmg_mult);
+			hpMult  = PlayerPrefs.GetInt (player1_hp_mult);
+
+		} else if (gameObject.tag == "Player2") {
+			dmgMult = PlayerPrefs.GetInt (player2_dmg_mult);
+			hpMult  = PlayerPrefs.GetInt (player2_hp_mult);
+
+		}
+
+		damage = initialDamage + (dmgMult * dmgMultValue);
+		hp     = initialHp     + (hpMult * hpMultValue);
+
+		//setting the values on the bullet
+		bullet.GetComponent<Projectile> ().damage = damage;
+
 	}
 
 	void Update () {

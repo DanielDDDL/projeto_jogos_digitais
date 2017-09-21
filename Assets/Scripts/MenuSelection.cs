@@ -21,6 +21,11 @@ public class MenuSelection : MonoBehaviour {
 	public Text txtDamageP2, txtHpP2;
 	public Text txtPointsP1, txtPointsP2;
 
+	// Use this for initialization
+	void Start () {
+		NotifyChanges ();
+	}
+
 	public void AddDamageP1() {
 		if (pointsP1 > 0) {
 			p1DamageMult++;
@@ -77,11 +82,6 @@ public class MenuSelection : MonoBehaviour {
 		Application.LoadLevel("main_scene");
 	}
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		//soething in here. notice me senpai
